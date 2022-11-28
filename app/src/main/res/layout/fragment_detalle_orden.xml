@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentosRepartidor.DetalleOrdenFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Orden #128"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="5dp"/>
+
+            <LinearLayout
+                android:id="@+id/accessibility_action_clickable_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:background="@drawable/borde">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/dinosaurio"
+                    android:padding="8dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DISFRAZITOS"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Stock 6 Unidades"
+                        android:layout_marginStart="8dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/green"
+                        android:text="S/. 12.00"
+                        android:layout_margin="4dp"
+                        android:gravity="end"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Cliente:"
+            android:textSize="20sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jhon Cena"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CEntregar en:"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Av. Los Alisales"
+            android:layout_marginStart="8dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha de pedido:"
+            android:layout_marginStart="8dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2022-11-21 15:50 pm"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"/>
+        <Button
+            android:id="@+id/btn_iniciar_entrega"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/boton"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="6dp"
+            android:text="INICIAR ENTREGA"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentosCliente.PuntoSeleccionadoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Completar estos datos"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingStart="5dp"
+            android:text="Escoge un punto de referencia en google maps Para la facilidad de entrega"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edt_direccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/borde"
+            android:text="DIRECCIÓN"
+            android:paddingVertical="10dp"
+            android:paddingStart="10dp" />
+
+        <EditText
+            android:id="@+id/edt_referencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/borde"
+            android:text="REFERENCIA"
+            android:paddingVertical="10dp"
+            android:paddingStart="10dp" />
+
+        <EditText
+            android:id="@+id/edt_punto_referencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/borde"
+            android:text="PUNTO DE ENTREGA"
+            android:paddingVertical="10dp"
+            android:paddingStart="10dp" />
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_selecionar_punto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/boton"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="25dp"
+        android:text="CONTINUAR"
+        android:textColor="@color/white"/>
+
+</FrameLayout>

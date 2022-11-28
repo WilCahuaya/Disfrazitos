@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Disfrazitos</string>
+
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="app_name_desarrollador_cliente">Jhon Cena  - Cliente</string>
+    <string name="app_name_desarrollador_repartidor">Wilder Cahuaya Quispe  - Repartidor</string>
+
+    <string name="navigation_drawer_open">Abrir navegación</string>
+    <string name="navigation_drawer_close">Cerrar navegación</string>
+
+    <!--REPARTIDOR-->
+    <!--MENU REPARTIDOR-->
+    <string name="inicio_repartidor">Inicio</string>
+    <string name="elegir_repartidor">Entregados</string>
+
+    <!--CLIENTE-->
+    <!--MENU CLIENTE-->
+    <string name="inicio_cliente">Inicio</string>
+    <string name="editar_perfil_cliente">Editar perfil</string>
+    <string name="pedidos_cliente">Mis pedidos</string>
+    <string name="app_opciones">Opciones</string>
+
+    <string name="app_mas_opciones">Más opciones</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
+
