@@ -14,6 +14,8 @@ Button btn_cliente, btn_repartidor;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
         btn_cliente=findViewById(R.id.btn_cliente);
         btn_repartidor=findViewById(R.id.btn_repartidor);
 

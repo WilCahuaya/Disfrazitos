@@ -24,6 +24,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="15dp">
             <TextView
+                android:id="@+id/txt_entregados_a_despachados"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -32,6 +33,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:gravity="center"/>
             <TextView
+                android:id="@+id/txt_entregados_a_encamino"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -18,7 +18,7 @@ import com.example.disfrazitos.R;
 
 public class InicioRepartidorFragment extends Fragment {
 LinearLayout lyt_tomar_orden;
-TextView txt_despachado_a_en_camino;
+TextView txt_despachado_a_en_camino,txt_despachado_a_entregados;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -26,6 +26,16 @@ TextView txt_despachado_a_en_camino;
         View vista=inflater.inflate(R.layout.fragment_inicio_repartidor, container, false);
         lyt_tomar_orden=vista.findViewById(R.id.lyt_tomar_orden);
         txt_despachado_a_en_camino=vista.findViewById(R.id.txt_despachado_a_en_camino);
+        txt_despachado_a_entregados=vista.findViewById(R.id.txt_despachado_a_entregados);
+
+        txt_despachado_a_entregados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction= getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_repartidor, new EntregadosRepartidorFragment());
+                transaction.commit();
+            }
+        });
 
         txt_despachado_a_en_camino.setOnClickListener(new View.OnClickListener() {
             @Override
