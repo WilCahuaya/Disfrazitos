@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "23064114142",
+    "firebase_url": "https://disfrazitos-8614e-default-rtdb.firebaseio.com",
+    "project_id": "disfrazitos-8614e",
+    "storage_bucket": "disfrazitos-8614e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23064114142:android:a4988429c0e9c3c72b634f",
+        "android_client_info": {
+          "package_name": "com.example.disfrazitos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23064114142-m2ltkh1blfuvssn4qlcscdf67gs3bbc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQDcrH9-kHzcbgomELK6Z-h-drms4afPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23064114142-m2ltkh1blfuvssn4qlcscdf67gs3bbc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

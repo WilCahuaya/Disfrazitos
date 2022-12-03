@@ -4,11 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-Button btn_cliente, btn_repartidor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,22 +17,21 @@ Button btn_cliente, btn_repartidor;
 
         getSupportActionBar().hide();
 
-        btn_cliente=findViewById(R.id.btn_cliente);
-        btn_repartidor=findViewById(R.id.btn_repartidor);
+        int tiempoTranscurrir = 3000; //3 segundo, 3000 millisegundos.
 
-        btn_cliente.setOnClickListener(new View.OnClickListener() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,MainActivityCliente.class);
+            public void run() {
+
+                //***Aquí agregamos el proceso a ejecutar.
+
+                Intent intent = new Intent(getApplicationContext(), MainActivityLogin.class);
                 startActivity(intent);
+
+                handler.removeCallbacks(null);
             }
-        });
-        btn_repartidor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,MainActivityRepartidor.class);
-                startActivity(intent);
-            }
-        });
+        }, tiempoTranscurrir );//define el tiempo.
+
     }
 }

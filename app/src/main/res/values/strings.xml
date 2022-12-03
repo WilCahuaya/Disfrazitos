@@ -14,8 +14,9 @@
     <string name="elegir_repartidor">Entregados</string>
 
     <!--CLIENTE-->
-    <!--MENU CLIENTE-->
+    <!--Titulos de fragments -->
     <string name="inicio_cliente">Inicio</string>
+    <!--MENU CLIENTE-->
     <string name="editar_perfil_cliente">Editar perfil</string>
     <string name="pedidos_cliente">Mis pedidos</string>
     <string name="app_opciones">Opciones</string>
@@ -23,6 +24,7 @@
     <string name="app_mas_opciones">Más opciones</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_dos_giones">--</string>
 
 </resources>
 

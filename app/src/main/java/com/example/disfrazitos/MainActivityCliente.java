@@ -1,5 +1,10 @@
 package com.example.disfrazitos;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,23 +12,26 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
-
 import com.example.disfrazitos.FragmentosCliente.EditarPerfilClienteFragment;
 import com.example.disfrazitos.FragmentosCliente.InicioClienteFragment;
 import com.example.disfrazitos.FragmentosCliente.MisPedidosClienteFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 
 public class MainActivityCliente extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
+
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_cliente);
+
+        this.setTitle(R.string.inicio_cliente);
+
+        mAuth=FirebaseAuth.getInstance();
 
         Toolbar toolbar =findViewById(R.id.toolbar_cliente);
         setSupportActionBar(toolbar);
@@ -61,6 +69,9 @@ public class MainActivityCliente extends AppCompatActivity implements Navigation
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_cliente, new EditarPerfilClienteFragment()).commit();
                 break;
             case R.id.cerrar_sesion_cliente:
+                mAuth.signOut();
+                finish();
+                startActivity(new Intent(MainActivityCliente.this,MainActivityLogin.class));
                 Toast.makeText(this, "Cerraste sesión", Toast.LENGTH_SHORT).show();
                 break;
         }

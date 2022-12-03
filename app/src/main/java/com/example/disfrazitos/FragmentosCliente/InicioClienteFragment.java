@@ -1,26 +1,26 @@
 package com.example.disfrazitos.FragmentosCliente;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.disfrazitos.Adaptadores.CategoriaAdapter;
+import com.example.disfrazitos.Entidades.Categorias;
 import com.example.disfrazitos.R;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class InicioClienteFragment extends Fragment {
     LinearLayout accessibility_action_clickable_span;
-    DrawerLayout drawerLayout;
+    RecyclerView categoriaRecycler;
+    CategoriaAdapter categoriaAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,7 +29,18 @@ public class InicioClienteFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_inicio_cliente, container, false);
         accessibility_action_clickable_span = vista.findViewById(R.id.accessibility_action_clickable_span);
 
-        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_cliente, new ShowDisfrazFragment()).commit();
+        categoriaRecycler=vista.findViewById(R.id.recycler_categoria);
+        categoriaRecycler.setHasFixedSize(true);
+        categoriaRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+        FirebaseRecyclerOptions<Categorias> opcionesCategoria=
+                new FirebaseRecyclerOptions.Builder<Categorias>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("CATEGORIAS"),Categorias.class)
+                .build();
+
+        categoriaAdapter=new CategoriaAdapter(opcionesCategoria);
+        categoriaRecycler.setAdapter(categoriaAdapter);
+
         accessibility_action_clickable_span.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,5 +50,17 @@ public class InicioClienteFragment extends Fragment {
             }
         });
         return vista;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        categoriaAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        categoriaAdapter.stopListening();
     }
 }
