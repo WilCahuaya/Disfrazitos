@@ -72,6 +72,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_nombre_disfraz_selecionado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Disfrazitos"
@@ -82,159 +83,20 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="10dp">
-            <LinearLayout
-                android:id="@+id/accessibility_action_clickable_span"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/borde">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/dinosaurio"
-                    android:padding="8dp"/>
-                <LinearLayout
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-                    <TextView
+                    android:orientation="vertical">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_disfraz"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="DISFRAZITOS"
-                        android:layout_marginStart="8dp"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Stock 6 Unidades"
-                        android:layout_marginStart="8dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/green"
-                        android:text="S/. 12.00"
-                        android:layout_margin="4dp"
-                        android:gravity="end"
-                        android:textStyle="bold"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/borde">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/tiburon"
-                    android:padding="8dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TIBURONCIN"
-                        android:layout_marginStart="8dp"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Stock 6 Unidades"
-                        android:layout_marginStart="8dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/green"
-                        android:text="S/. 12.00"
-                        android:layout_margin="4dp"
-                        android:gravity="end"
-                        android:textStyle="bold"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/borde">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/chico"
-                    android:padding="8dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="OSITO"
-                        android:layout_marginStart="8dp"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Stock 6 Unidades"
-                        android:layout_marginStart="8dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/green"
-                        android:text="S/. 12.00"
-                        android:layout_margin="4dp"
-                        android:gravity="end"
-                        android:textStyle="bold"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/borde">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/rana"
-                    android:padding="8dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="RANITA"
-                        android:layout_marginStart="8dp"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Stock 6 Unidades"
-                        android:layout_marginStart="8dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/green"
-                        android:text="S/. 12.00"
-                        android:layout_margin="4dp"
-                        android:gravity="end"
-                        android:textStyle="bold"
-                        />
-                </LinearLayout>
-            </LinearLayout>
+                        android:layout_height="360dp"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </RelativeLayout>
+
         </LinearLayout>
 
     </LinearLayout>

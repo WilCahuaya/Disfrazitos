@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +19,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class CategoriaAdapter extends FirebaseRecyclerAdapter<Categorias,CategoriaAdapter.CategoriaHolder> {
     String imagen;
+    private EventListener eventListener;
+
+    //Primero creamos una interface dentro de la clase Adaptador de nuestro RecyclerView:
+    public interface EventListener {
+        void onEventName(String nombre);
+    }
 
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
@@ -27,8 +32,11 @@ public class CategoriaAdapter extends FirebaseRecyclerAdapter<Categorias,Categor
      *
      * @param options
      */
-    public CategoriaAdapter(@NonNull @NotNull FirebaseRecyclerOptions<Categorias> options) {
+
+    public CategoriaAdapter(@NonNull @NotNull FirebaseRecyclerOptions<Categorias> options,EventListener eventListener)
+    {
         super(options);
+        this.eventListener = eventListener;
     }
 
     @Override
@@ -44,7 +52,7 @@ public class CategoriaAdapter extends FirebaseRecyclerAdapter<Categorias,Categor
         categoriaHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), categoria.getNom_categoria(), Toast.LENGTH_SHORT).show();
+                eventListener.onEventName(categoria.getNom_categoria());
 
             }
         });
@@ -54,7 +62,7 @@ public class CategoriaAdapter extends FirebaseRecyclerAdapter<Categorias,Categor
     @NotNull
     @Override
     public CategoriaAdapter.CategoriaHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.categorias_disponibles,parent,false);
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_categorias_disponibles,parent,false);
         return new CategoriaHolder(v);
     }
 
