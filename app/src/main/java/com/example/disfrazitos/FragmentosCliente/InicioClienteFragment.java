@@ -50,18 +50,6 @@ public class InicioClienteFragment extends Fragment implements CategoriaAdapter.
         categoriaAdapter=new CategoriaAdapter(opcionesCategoria,this);
         categoriaRecycler.setAdapter(categoriaAdapter);
 
-
-
-//        accessibility_action_clickable_span.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FragmentTransaction transaction= getParentFragmentManager().beginTransaction();
-//                transaction.replace(R.id.fragment_container_cliente, new ShowDisfrazFragment());
-//                transaction.commit();
-//            }
-//        });
-
-
         return vista;
     }
 
