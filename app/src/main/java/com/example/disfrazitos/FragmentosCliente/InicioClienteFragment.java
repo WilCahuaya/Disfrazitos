@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +20,7 @@ import com.example.disfrazitos.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class InicioClienteFragment extends Fragment implements CategoriaAdapter.EventListener{
+public class InicioClienteFragment extends Fragment implements CategoriaAdapter.EventListener,DisfrazAdapter.EventListener{
     //LinearLayout accessibility_action_clickable_span;
     RecyclerView categoriaRecycler,disfrazRecycler;
     CategoriaAdapter categoriaAdapter;
@@ -95,7 +97,7 @@ public class InicioClienteFragment extends Fragment implements CategoriaAdapter.
                     new FirebaseRecyclerOptions.Builder<Disfraz>()
                             .setQuery(FirebaseDatabase.getInstance().getReference("DISFRAZ_CATEGORIA").child("Animales de la Granja"),Disfraz.class)
                             .build();
-            disfrazAdapter=new DisfrazAdapter(opcionesDisfraz);
+            disfrazAdapter=new DisfrazAdapter(opcionesDisfraz,this);
             disfrazRecycler.setAdapter(disfrazAdapter);
             disfrazAdapter.startListening();
         }else {
@@ -103,9 +105,33 @@ public class InicioClienteFragment extends Fragment implements CategoriaAdapter.
                     new FirebaseRecyclerOptions.Builder<Disfraz>()
                             .setQuery(FirebaseDatabase.getInstance().getReference("DISFRAZ_CATEGORIA").child(BD_CATEGORIA_FIREBASE), Disfraz.class)
                             .build();
-            disfrazAdapter=new DisfrazAdapter(opcionesDisfraz);
+            disfrazAdapter=new DisfrazAdapter(opcionesDisfraz,this);
             disfrazRecycler.setAdapter(disfrazAdapter);
             disfrazAdapter.startListening();
         }
+    }
+
+    @Override
+    public void onEventDisfrazDetalle(String imagen, String nombre, String descripcion, String talla, int cantidad, float precio) {
+        //Crear bundle, que son los datos que pasaremos
+        Bundle datosAEnviar = new Bundle();
+        // Aquí pon todos los datos que quieras en formato clave, valor
+        datosAEnviar.putString("imagen", imagen);
+        datosAEnviar.putString("nombre", nombre);
+        datosAEnviar.putString("descripcion", descripcion);
+        datosAEnviar.putString("talla", talla);
+        datosAEnviar.putInt("cantidad", cantidad);
+        datosAEnviar.putFloat("precio", precio);
+
+        Fragment fragmento = new ShowDisfrazFragment();
+        // ¡Importante! darle argumentos
+        fragmento.setArguments(datosAEnviar);
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container_cliente, fragmento);
+        fragmentTransaction.addToBackStack(null);
+
+        // Terminar transición y nos vemos en el fragmento de destino
+        fragmentTransaction.commit();
     }
 }

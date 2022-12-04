@@ -19,14 +19,21 @@ import com.squareup.picasso.Picasso;
 import org.jetbrains.annotations.NotNull;
 
 public class DisfrazAdapter extends FirebaseRecyclerAdapter<Disfraz,DisfrazAdapter.DisfrazHolder> {
+    private EventListener eventListenerDetalleDisfraz;
+
+    public interface EventListener {
+        void onEventDisfrazDetalle(String imagen,String nombre,String descripcion,String talla,int cantidad,float precio);
+    }
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public DisfrazAdapter(@NonNull @NotNull FirebaseRecyclerOptions<Disfraz> options) {
+
+    public DisfrazAdapter(@NonNull @NotNull FirebaseRecyclerOptions<Disfraz> options, CategoriaAdapter.EventListener eventListener) {
         super(options);
+        this.eventListenerDetalleDisfraz = (EventListener) eventListener;
     }
 
     @Override
@@ -35,6 +42,8 @@ public class DisfrazAdapter extends FirebaseRecyclerAdapter<Disfraz,DisfrazAdapt
         String sNom= disfraz.getNom_disfraz();
         String sDesc= disfraz.getDesc_disfraz();
         String sTall= disfraz.getTall_disfraz();
+        int iCant=disfraz.getCant_disfraz();
+        float fPrec=disfraz.getPrec_disfraz();
         String sCant= "Stock: "+disfraz.getCant_disfraz()+" Unidades";
         String sPrec= "S/. "+disfraz.getPrec_disfraz();
 
@@ -52,6 +61,7 @@ public class DisfrazAdapter extends FirebaseRecyclerAdapter<Disfraz,DisfrazAdapt
             @Override
             public void onClick(View v) {
                 Toast.makeText(v.getContext(), ""+sDesc, Toast.LENGTH_SHORT).show();
+                eventListenerDetalleDisfraz.onEventDisfrazDetalle(sImg,sNom,sDesc,sTall,iCant,fPrec);
             }
         });
     }
