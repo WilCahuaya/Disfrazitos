@@ -1,8 +1,11 @@
 package com.example.disfrazitos.FragmentosRepartidor;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.disfrazitos.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,7 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 public class MapsEnCaminoFragment extends Fragment {
-    Button btn_entregar_disfraz;
+    Button btn_entregar_disfraz,btn_llamar;
     TextView txt_id_pedido_maps,txt_precioTotal_pedido_maps,txt_cliente_pedido_maps,txt_direccion_pedido_maps,txt_referencia_pedido_maps;
 
     Bundle datosRecuperados;
@@ -82,6 +87,25 @@ public class MapsEnCaminoFragment extends Fragment {
             talla_disfraz = datosRecuperados.getString("talla_disfraz");
             cantidaComprar_disfraz = datosRecuperados.getInt("cantidaComprar_disfraz");
             precioTotal_disfraz = datosRecuperados.getFloat("precioTotal_disfraz");
+
+            Toast.makeText(getContext(), ""+telefono_pedido, Toast.LENGTH_SHORT).show();
+            btn_llamar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(telefono_pedido!="") { // Verificamos si el numero de telefono no esta vacio
+                        Uri number = Uri.parse("tel:" + telefono_pedido); // Creamos una uri con el numero de telefono
+                        Intent dial = new Intent(Intent.ACTION_DIAL, number); // Creamos una llamada al Intent de llamadas
+                        startActivity(dial); // Ejecutamos el Intent
+                    }else { // Si el numero esta vacio
+                        // Mostramos una alerta de que debemos escribir un numero
+                        AlertDialog.Builder alert1 = new AlertDialog.Builder(getContext());
+                        alert1.setTitle("No hay numero"); // Titulo de la alerta
+                        alert1.setMessage("Debes escribir un Numero!"); // Contenido de la alerta
+                        alert1.show(); // mostrar alerta
+                    }
+                }
+            });
 
             txt_id_pedido_maps.setText("Orden #"+id_pedido);
             txt_precioTotal_pedido_maps.setText("S/. "+precioTotal_disfraz);
@@ -158,6 +182,7 @@ public class MapsEnCaminoFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View vista=inflater.inflate(R.layout.fragment_maps_en_camino, container, false);
         btn_entregar_disfraz=vista.findViewById(R.id.btn_entregar_disfraz);
+        btn_llamar=vista.findViewById(R.id.btn_llamar);
         txt_id_pedido_maps=vista.findViewById(R.id.txt_id_pedido_maps);
         txt_precioTotal_pedido_maps=vista.findViewById(R.id.txt_precioTotal_pedido_maps);
         txt_cliente_pedido_maps=vista.findViewById(R.id.txt_cliente_pedido_maps);
@@ -169,8 +194,37 @@ public class MapsEnCaminoFragment extends Fragment {
         btn_entregar_disfraz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "hsgdbwuidgbuwegbfd", Toast.LENGTH_SHORT).show();
-                //FotoEntregaFragment()
+                //Crear bundle, que son los datos que pasaremos
+                Bundle datosAEnviar = new Bundle();
+                // Aquí pon todos los datos que quieras en formato clave, valor
+                datosAEnviar.putString("pid",pid);
+                datosAEnviar.putInt("id_pedido",id_pedido);
+                datosAEnviar.putString("cliente_pedido", cliente_pedido);
+                datosAEnviar.putString("telefono_pedido", telefono_pedido);
+                datosAEnviar.putString("direccion_pedido", direccion_pedido);
+                datosAEnviar.putString("referencia_pedido", referencia_pedido);
+                datosAEnviar.putString("puntoEntrega_pedido", puntoEntrega_pedido);
+                datosAEnviar.putDouble("latitud_pedido", latitud_pedido);
+                datosAEnviar.putDouble("longitud_pedido", longitud_pedido);
+                datosAEnviar.putString("estado_pedido", estado_pedido);
+                datosAEnviar.putString("fecha_pedido", fecha_pedido);
+                datosAEnviar.putString("imagen_disfraz", imagen_disfraz);
+                datosAEnviar.putString("nombre_disfraz", nombre_disfraz);
+                datosAEnviar.putString("descripcion_disfraz", descripcion_disfraz);
+                datosAEnviar.putString("talla_disfraz", talla_disfraz);
+                datosAEnviar.putInt("cantidaComprar_disfraz", cantidaComprar_disfraz);
+                datosAEnviar.putFloat("precioTotal_disfraz", precioTotal_disfraz);
+
+                Fragment fragmento = new FotoEntregaFragment();
+                // ¡Importante! darle argumentos
+                fragmento.setArguments(datosAEnviar);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container_repartidor, fragmento);
+                fragmentTransaction.addToBackStack(null);
+
+                // Terminar transición y nos vemos en el fragmento de destino
+                fragmentTransaction.commit();
             }
         });
         return vista;

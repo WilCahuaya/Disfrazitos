@@ -73,8 +73,12 @@ public class MainActivityLogin extends AppCompatActivity {
                         NOMBRE="Wilder Cahuaya Repartidor";
                         TELEFONO="985623568";
                         startActivity(new Intent(MainActivityLogin.this,MainActivityRepartidor.class));
+                    }else if(email.equals("pperezsoto@gmail.com")){;
+                        NOMBRE="Pedro Perez Soto";
+                        TELEFONO="935273129";
+                        startActivity(new Intent(MainActivityLogin.this,MainActivityCliente.class));
                     }
-                    Toast.makeText(MainActivityLogin.this, "Bienvenido", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivityLogin.this, "Bienvenido "+NOMBRE, Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(MainActivityLogin.this, "Error", Toast.LENGTH_SHORT).show();
                 }

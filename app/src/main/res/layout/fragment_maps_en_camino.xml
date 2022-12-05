@@ -85,14 +85,32 @@
             android:layout_marginStart="20dp"
             android:textSize="18sp"
             android:textColor="@color/black"/>
-        <TextView
-            android:id="@+id/txt_referencia_pedido_maps"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Av. Los Alisales"
-            android:textSize="18sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="8dp"/>
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txt_referencia_pedido_maps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="Av. Los Alisales"
+                android:textSize="18sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="8dp"/>
+            <Button
+                android:id="@+id/btn_llamar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:background="@drawable/boton"
+                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:drawableLeft="@drawable/ic_llamar"
+                android:textColor="@color/white"
+                android:text="LLAMAR"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_entregar_disfraz"

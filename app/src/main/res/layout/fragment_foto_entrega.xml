@@ -38,8 +38,9 @@
             android:layout_marginTop="20dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="300dp"
-                android:layout_height="400dp"
+                android:id="@+id/img_foto_tomada"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
                 android:src="@drawable/entregado" />
 
         </LinearLayout>
@@ -52,6 +53,7 @@
         android:orientation="vertical"
         android:layout_gravity="bottom">
         <Button
+            android:id="@+id/btn_tomar_foto_entrega"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/boton"
