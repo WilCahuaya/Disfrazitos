@@ -25,6 +25,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class MapsFragmentPedidoCliente extends Fragment {
     private GoogleMap mMap;
+
+    Bundle datosRecuperados;
     //private ActivityFragmentMapsBinding binding;
 
     //Varibles de latitud y longitud
@@ -45,6 +47,27 @@ public class MapsFragmentPedidoCliente extends Fragment {
         public void onMapReady(GoogleMap googleMap) {
             mMap = googleMap;
 
+            datosRecuperados = getArguments();
+            if (datosRecuperados == null) {
+                try {
+
+                }catch (Exception e){
+                    Toast.makeText(getContext(), "No hay conexion"+e, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+            String imagen = datosRecuperados.getString("imagen");
+            String nombre = datosRecuperados.getString("nombre");
+            String descripcion = datosRecuperados.getString("descripcion");
+            String talla = datosRecuperados.getString("talla");
+            int stock = datosRecuperados.getInt("stock");
+            float precio = datosRecuperados.getFloat("precio");
+            int cantidadComprar = datosRecuperados.getInt("cantidadComprar");
+            float precioTotal = datosRecuperados.getFloat("precioTotal");
+            String direccion = datosRecuperados.getString("direccion");
+            String referencia = datosRecuperados.getString("referencia");
+
             // Add a marker in Sydney and move the camera
             mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
             LatLng hyo = new LatLng(-12.068148340882951, -75.21002132643184);
@@ -63,14 +86,22 @@ public class MapsFragmentPedidoCliente extends Fragment {
                             .anchor(0.5F,0.5f));
                     mLat=latLng.latitude;
                     mlong=latLng.longitude;
-                    Toast.makeText(getContext(), mLat+" <> "+mlong, Toast.LENGTH_LONG).show();
 
                     //Crear bundle, que son los datos que pasaremos
                     Bundle datosAEnviar = new Bundle();
                     // Aquí pon todos los datos que quieras en formato clave, valor
-
-                    datosAEnviar.putDouble("precio", mLat);
-                    datosAEnviar.putDouble("precio", mlong);
+                    datosAEnviar.putString("imagen", imagen);
+                    datosAEnviar.putString("nombre", nombre);
+                    datosAEnviar.putString("descripcion", descripcion);
+                    datosAEnviar.putString("talla", talla);
+                    datosAEnviar.putInt("stock", stock);
+                    datosAEnviar.putFloat("precio", precio);
+                    datosAEnviar.putInt("cantidadComprar", cantidadComprar);
+                    datosAEnviar.putFloat("precioTotal", precioTotal);
+                    datosAEnviar.putString("direccion", direccion);
+                    datosAEnviar.putString("referencia", referencia);
+                    datosAEnviar.putDouble("latitud", mLat);
+                    datosAEnviar.putDouble("longitud", mlong);
 
                     Fragment fragmento = new PuntoSeleccionadoFragment();
                     // ¡Importante! darle argumentos

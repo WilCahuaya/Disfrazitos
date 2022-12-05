@@ -1,5 +1,10 @@
 package com.example.disfrazitos;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,13 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.example.disfrazitos.FragmentosRepartidor.InicioRepartidorFragment;
 import com.example.disfrazitos.FragmentosRepartidor.EntregadosRepartidorFragment;
+import com.example.disfrazitos.FragmentosRepartidor.InicioRepartidorFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -22,11 +22,14 @@ import org.jetbrains.annotations.NotNull;
 public class MainActivityRepartidor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     FirebaseAuth mAuth;
+    TextView txt_nombre_repartidor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_repartidor);
+        txt_nombre_repartidor=findViewById(R.id.txt_nombre_repartidor);
+
         mAuth=FirebaseAuth.getInstance();
 
         Toolbar toolbar =findViewById(R.id.toolbar_repartidor);
@@ -39,6 +42,8 @@ public class MainActivityRepartidor extends AppCompatActivity implements Navigat
 
         //color a los iconos
         navigationView.setItemIconTintList(null);
+        txt_nombre_repartidor=navigationView.getHeaderView(0).findViewById(R.id.txt_nombre_repartidor);
+        txt_nombre_repartidor.setText(Util.NOMBRE_CLIENTE);
 
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
 

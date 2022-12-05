@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.disfrazitos.R;
@@ -22,8 +23,11 @@ public class ShowDisfrazFragment extends Fragment {
     Button btn_alquilar;
     Bundle datosRecuperados;
     ImageView img_disfraz_detalle;
-    TextView txt_nombre_disfraz_detalle,txt_talla_disfraz_detalle,txt_precio_disfraz_detalle,txt_descripcion_disfraz_detalle,txt_preciototal_disfraz_detalle,txt_cantidad_selecionada_disfraz;
+    TextView txt_nombre_disfraz_detalle,txt_talla_disfraz_detalle,txt_precio_disfraz_detalle,txt_descripcion_disfraz_detalle,txt_preciototal_disfraz_detalle,txt_cantidad_selecionada_disfraz,txt_stock_disfraz_detalle;
     LinearLayout linLay_mas_uno_detalle,linLay_menos_uno_detalle;
+
+    int stock, cantidadComprar;
+    float precio,precioTotal;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +42,8 @@ public class ShowDisfrazFragment extends Fragment {
         txt_precio_disfraz_detalle=vista.findViewById(R.id.txt_precio_disfraz_detalle);
         txt_descripcion_disfraz_detalle=vista.findViewById(R.id.txt_descripcion_disfraz_detalle);
         txt_preciototal_disfraz_detalle=vista.findViewById(R.id.txt_preciototal_disfraz_detalle);
+        txt_stock_disfraz_detalle=vista.findViewById(R.id.txt_stock_disfraz_detalle);
+
 
         txt_cantidad_selecionada_disfraz=vista.findViewById(R.id.txt_cantidad_selecionada_disfraz);
 
@@ -50,7 +56,7 @@ public class ShowDisfrazFragment extends Fragment {
             try {
 
             }catch (Exception e){
-                Toast.makeText(getContext(), "No ha conexion"+e, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "No hay conexion"+e, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -59,8 +65,9 @@ public class ShowDisfrazFragment extends Fragment {
         String nombre = datosRecuperados.getString("nombre");
         String descripcion = datosRecuperados.getString("descripcion");
         String talla = datosRecuperados.getString("talla");
-        int cantidad = datosRecuperados.getInt("cantidad");
-        float precio = datosRecuperados.getFloat("precio");
+        stock = datosRecuperados.getInt("cantidad");
+        precio = datosRecuperados.getFloat("precio");
+        cantidadComprar=Integer.parseInt((String) txt_cantidad_selecionada_disfraz.getText());
 
         try{
             Picasso.get().load(imagen).placeholder(R.drawable.categoria).into(img_disfraz_detalle);
@@ -71,62 +78,82 @@ public class ShowDisfrazFragment extends Fragment {
         txt_talla_disfraz_detalle.setText(talla);
         txt_precio_disfraz_detalle.setText("S/. "+precio);
         txt_descripcion_disfraz_detalle.setText(descripcion);
-        float precioTotal=1*precio;
-        txt_preciototal_disfraz_detalle.setText("Total a pagar: "+precioTotal);
+        txt_stock_disfraz_detalle.setText("Stock: "+ stock);
+
+//        precioTotal=0*precio;
+//        txt_preciototal_disfraz_detalle.setText("Total a pagar: "+precioTotal);
 
         linLay_mas_uno_detalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int cantidadComprar=Integer.parseInt((String) txt_cantidad_selecionada_disfraz.getText());
-                cantidadComprar=cantidadComprar+1;
-                txt_cantidad_selecionada_disfraz.setText(String.valueOf(cantidadComprar));
-                DecimalFormat df = new DecimalFormat("###.##");
-                String precioTotal= df.format(cantidadComprar*precio);
-                txt_preciototal_disfraz_detalle.setText("Total a pagar: "+precioTotal);
+                if(stock>0){
+                    stock=stock-1;
+                    cantidadComprar=cantidadComprar+1;
+                    txt_cantidad_selecionada_disfraz.setText(String.valueOf(cantidadComprar));
+                    DecimalFormat df = new DecimalFormat("###.##");
+                    precioTotal=cantidadComprar*precio;
+                    String sPrecioTotal= df.format(precioTotal);
+                    txt_preciototal_disfraz_detalle.setText("Total a pagar: "+sPrecioTotal);
+                    txt_stock_disfraz_detalle.setText("Stock: "+ stock);
+                }else{
+                    Toast.makeText(getContext(), "No hay mas Stock", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         linLay_mas_uno_detalle.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                int cantidadComprar=Integer.parseInt((String) txt_cantidad_selecionada_disfraz.getText());
+                if(stock>4){
+                    stock=stock-5;
                 cantidadComprar=cantidadComprar+5;
                 txt_cantidad_selecionada_disfraz.setText(String.valueOf(cantidadComprar));
                 DecimalFormat df = new DecimalFormat("###.##");
-                String precioTotal= df.format(cantidadComprar*precio);
-                txt_preciototal_disfraz_detalle.setText("Total a pagar: "+precioTotal+" soles");
+                    precioTotal=cantidadComprar*precio;
+                    String sPrecioTotal= df.format(precioTotal);
+                txt_preciototal_disfraz_detalle.setText("Total a pagar: "+sPrecioTotal+" soles");
+                    txt_stock_disfraz_detalle.setText("Stock: "+ stock);
+                }else{
+                    Toast.makeText(getContext(), "No hay mas Stock", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             }
         });
         linLay_menos_uno_detalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int cantidadComprar=Integer.parseInt((String) txt_cantidad_selecionada_disfraz.getText());
                 if (cantidadComprar<=1){
                     Toast.makeText(getContext(), "La cantidad no puede ser menor que uno", Toast.LENGTH_SHORT).show();
                     cantidadComprar=1;
+
                 }else {
                     cantidadComprar=cantidadComprar-1;
+                    stock++;
+                    txt_stock_disfraz_detalle.setText("Stock: "+ stock);
                 }
                 txt_cantidad_selecionada_disfraz.setText(String.valueOf(cantidadComprar));
                 DecimalFormat df = new DecimalFormat("###.##");
-                String precioTotal= df.format(cantidadComprar*precio);
-                txt_preciototal_disfraz_detalle.setText("Total a pagar: "+precioTotal);
+                precioTotal=cantidadComprar*precio;
+                String sPrecioTotal= df.format(precioTotal);
+                txt_preciototal_disfraz_detalle.setText("Total a pagar: "+sPrecioTotal);
             }
         });
         linLay_menos_uno_detalle.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                int cantidadComprar=Integer.parseInt((String) txt_cantidad_selecionada_disfraz.getText());
                 if (cantidadComprar<=5){
                     Toast.makeText(getContext(), "La cantidad no puede ser menor que uno", Toast.LENGTH_SHORT).show();
                     cantidadComprar=1;
                 }else {
                     cantidadComprar=cantidadComprar-5;
+                    stock=stock+5;
+                    txt_stock_disfraz_detalle.setText("Stock: "+ stock);
                 }
                 txt_cantidad_selecionada_disfraz.setText(String.valueOf(cantidadComprar));
                 DecimalFormat df = new DecimalFormat("###.##");
-                String precioTotal= df.format(cantidadComprar*precio);
-                txt_preciototal_disfraz_detalle.setText("Total a pagar: "+precioTotal);
+                precioTotal=cantidadComprar*precio;
+                String sPrecioTotal= df.format(precioTotal);
+                txt_preciototal_disfraz_detalle.setText("Total a pagar: "+sPrecioTotal);
                 return true;
             }
         });
@@ -135,9 +162,31 @@ public class ShowDisfrazFragment extends Fragment {
         btn_alquilar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction= getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container_cliente, new AlquilarDisfrazFragment());
-                transaction.commit();
+                if (cantidadComprar==0){
+                    Toast.makeText(getContext(), "Cantidad no puede ser cero", Toast.LENGTH_SHORT).show();
+                }else {
+                    //Crear bundle, que son los datos que pasaremos
+                    Bundle datosAEnviar = new Bundle();
+                    // Aquí pon todos los datos que quieras en formato clave, valor
+                    datosAEnviar.putString("imagen", imagen);
+                    datosAEnviar.putString("nombre", nombre);
+                    datosAEnviar.putString("descripcion", descripcion);
+                    datosAEnviar.putString("talla", talla);
+                    datosAEnviar.putInt("stock", stock);
+                    datosAEnviar.putFloat("precio", precio);
+                    datosAEnviar.putInt("cantidadComprar", cantidadComprar);
+                    datosAEnviar.putFloat("precioTotal", precioTotal);
+                    Fragment fragmento = new AlquilarDisfrazFragment();
+                    // ¡Importante! darle argumentos
+                    fragmento.setArguments(datosAEnviar);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container_cliente, fragmento);
+                    fragmentTransaction.addToBackStack(null);
+
+                    // Terminar transición y nos vemos en el fragmento de destino
+                    fragmentTransaction.commit();
+                }
             }
         });
 

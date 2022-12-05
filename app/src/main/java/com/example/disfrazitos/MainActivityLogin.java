@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
+import static com.example.disfrazitos.Util.NOMBRE_CLIENTE;
+
 public class MainActivityLogin extends AppCompatActivity {
     EditText edt_correo_login, edt_contrasena_login;
     Button btn_iniciar_sesion;
@@ -62,8 +64,13 @@ public class MainActivityLogin extends AppCompatActivity {
                 if (task.isSuccessful()){
                     finish();
                     if(email.equals("cliente@gmail.com")){
+                        String nombre_cliente="Cliente Prueba";
+                        NOMBRE_CLIENTE=nombre_cliente;
+                        Toast.makeText(MainActivityLogin.this, NOMBRE_CLIENTE, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivityLogin.this,MainActivityCliente.class));
                     }else if (email.equals("repartidor@gmail.com")){
+                        String nombre_repartidor="Repartidor Prueba";
+                        NOMBRE_CLIENTE=nombre_repartidor;
                         startActivity(new Intent(MainActivityLogin.this,MainActivityRepartidor.class));
                     }
                     Toast.makeText(MainActivityLogin.this, "Bienvenido", Toast.LENGTH_SHORT).show();

@@ -36,6 +36,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/borde"
             android:text="DIRECCIÓN"
+            android:textColor="@color/green"
             android:paddingVertical="10dp"
             android:paddingStart="10dp" />
 
@@ -46,6 +47,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/borde"
             android:text="REFERENCIA"
+            android:textColor="@color/green"
             android:paddingVertical="10dp"
             android:paddingStart="10dp" />
 
@@ -56,6 +58,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/borde"
             android:text="PUNTO DE ENTREGA"
+            android:textColor="@color/green"
             android:paddingVertical="10dp"
             android:paddingStart="10dp" />
 

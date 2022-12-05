@@ -3,6 +3,7 @@ package com.example.disfrazitos;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,12 +23,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainActivityCliente extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
-
+TextView txt_nombre_cliente;
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_cliente);
+
 
         this.setTitle(R.string.inicio_cliente);
 
@@ -41,8 +43,11 @@ public class MainActivityCliente extends AppCompatActivity implements Navigation
         NavigationView navigationView=findViewById(R.id.nav_view_cliente);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         //color a los iconos
         navigationView.setItemIconTintList(null);
+        txt_nombre_cliente=navigationView.getHeaderView(0).findViewById(R.id.txt_nombre_cliente);
+        txt_nombre_cliente.setText(Util.NOMBRE_CLIENTE);
 
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
 
