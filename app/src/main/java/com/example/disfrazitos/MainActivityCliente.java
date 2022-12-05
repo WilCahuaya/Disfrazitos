@@ -47,7 +47,7 @@ TextView txt_nombre_cliente;
         //color a los iconos
         navigationView.setItemIconTintList(null);
         txt_nombre_cliente=navigationView.getHeaderView(0).findViewById(R.id.txt_nombre_cliente);
-        txt_nombre_cliente.setText(Util.NOMBRE_CLIENTE);
+        txt_nombre_cliente.setText(Util.NOMBRE);
 
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
 

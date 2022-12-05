@@ -27,8 +27,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import static com.example.disfrazitos.Util.NOMBRE_CLIENTE;
+import static com.example.disfrazitos.Util.NOMBRE;
 import static com.example.disfrazitos.Util.NUMERO_PEDIDO;
+import static com.example.disfrazitos.Util.TELEFONO;
 
 public class PuntoSeleccionadoFragment extends Fragment {
     Button btn_selecionar_punto;
@@ -121,7 +122,8 @@ public class PuntoSeleccionadoFragment extends Fragment {
     private void registrarPedido() {
         int id_pedido=NUMERO_PEDIDO+1;
         NUMERO_PEDIDO=id_pedido;
-        String cliente_pedido=NOMBRE_CLIENTE;
+        String cliente_pedido=NOMBRE;
+        String telefono_pedido=TELEFONO;
         String direccion_pedido=direccion;
         String referencia_pedido=referencia;
         String puntoEntrega_pedido=edt_punto_referencia.getText().toString();
@@ -146,7 +148,7 @@ public class PuntoSeleccionadoFragment extends Fragment {
         int cantidadComprar_disfraz=cantidadComprar;
         float precioTotal_disfraz=precioTotal;
 
-        Pedido pedido=new Pedido(id_pedido,cliente_pedido,direccion_pedido,referencia_pedido,
+        Pedido pedido=new Pedido(id_pedido,cliente_pedido,telefono_pedido,direccion_pedido,referencia_pedido,
                 puntoEntrega_pedido,latitud_pedido,longitud_pedido,estado_pedido,photo_pedido,
                 fecha_pedido,imagen_disfraz,nombre_disfraz,descripcion_disfraz,talla_disfraz,
                 stock_disfraz,precio_disfraz,cantidadComprar_disfraz,precioTotal_disfraz);

@@ -43,7 +43,7 @@ public class MainActivityRepartidor extends AppCompatActivity implements Navigat
         //color a los iconos
         navigationView.setItemIconTintList(null);
         txt_nombre_repartidor=navigationView.getHeaderView(0).findViewById(R.id.txt_nombre_repartidor);
-        txt_nombre_repartidor.setText(Util.NOMBRE_CLIENTE);
+        txt_nombre_repartidor.setText(Util.NOMBRE);
 
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
 

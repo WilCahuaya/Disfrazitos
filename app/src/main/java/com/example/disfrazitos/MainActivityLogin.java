@@ -19,7 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
-import static com.example.disfrazitos.Util.NOMBRE_CLIENTE;
+import static com.example.disfrazitos.Util.NOMBRE;
+import static com.example.disfrazitos.Util.TELEFONO;
 
 public class MainActivityLogin extends AppCompatActivity {
     EditText edt_correo_login, edt_contrasena_login;
@@ -63,14 +64,14 @@ public class MainActivityLogin extends AppCompatActivity {
             public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     finish();
-                    if(email.equals("cliente@gmail.com")){
-                        String nombre_cliente="Cliente Prueba";
-                        NOMBRE_CLIENTE=nombre_cliente;
-                        Toast.makeText(MainActivityLogin.this, NOMBRE_CLIENTE, Toast.LENGTH_SHORT).show();
+                    if(email.equals("cliente@gmail.com")){;
+                        NOMBRE="Wilder Cahuaya Cliente";
+                        TELEFONO="998608345";
                         startActivity(new Intent(MainActivityLogin.this,MainActivityCliente.class));
                     }else if (email.equals("repartidor@gmail.com")){
                         String nombre_repartidor="Repartidor Prueba";
-                        NOMBRE_CLIENTE=nombre_repartidor;
+                        NOMBRE="Wilder Cahuaya Repartidor";
+                        TELEFONO="985623568";
                         startActivity(new Intent(MainActivityLogin.this,MainActivityRepartidor.class));
                     }
                     Toast.makeText(MainActivityLogin.this, "Bienvenido", Toast.LENGTH_SHORT).show();

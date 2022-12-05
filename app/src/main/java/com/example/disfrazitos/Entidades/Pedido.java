@@ -3,6 +3,7 @@ package com.example.disfrazitos.Entidades;
 public class Pedido {
     int id_pedido;
     String cliente_pedido;
+    String telefono_pedido;
     String direccion_pedido;
     String referencia_pedido;
     String puntoEntrega_pedido;
@@ -24,9 +25,10 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(int id_pedido, String cliente_pedido, String direccion_pedido, String referencia_pedido, String puntoEntrega_pedido, double latitud_pedido, double longitud_pedido, String estado_pedido, String photo_pedido, String fecha_pedido, String imagen_disfraz, String nombre_disfraz, String descripcion_disfraz, String talla_disfraz, int stock_disfraz, float precio_disfraz, int cantidadComprar_disfraz, float precioTotal_disfraz) {
+    public Pedido(int id_pedido, String cliente_pedido, String telefono_pedido, String direccion_pedido, String referencia_pedido, String puntoEntrega_pedido, double latitud_pedido, double longitud_pedido, String estado_pedido, String photo_pedido, String fecha_pedido, String imagen_disfraz, String nombre_disfraz, String descripcion_disfraz, String talla_disfraz, int stock_disfraz, float precio_disfraz, int cantidadComprar_disfraz, float precioTotal_disfraz) {
         this.id_pedido = id_pedido;
         this.cliente_pedido = cliente_pedido;
+        this.telefono_pedido = telefono_pedido;
         this.direccion_pedido = direccion_pedido;
         this.referencia_pedido = referencia_pedido;
         this.puntoEntrega_pedido = puntoEntrega_pedido;
@@ -59,6 +61,14 @@ public class Pedido {
 
     public void setCliente_pedido(String cliente_pedido) {
         this.cliente_pedido = cliente_pedido;
+    }
+
+    public String getTelefono_pedido() {
+        return telefono_pedido;
+    }
+
+    public void setTelefono_pedido(String telefono_pedido) {
+        this.telefono_pedido = telefono_pedido;
     }
 
     public String getDireccion_pedido() {
