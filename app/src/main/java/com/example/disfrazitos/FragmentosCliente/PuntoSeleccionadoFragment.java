@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import static com.example.disfrazitos.Util.NOMBRE;
 import static com.example.disfrazitos.Util.NUMERO_PEDIDO;
@@ -120,6 +121,7 @@ public class PuntoSeleccionadoFragment extends Fragment {
     }
 
     private void registrarPedido() {
+        String pid=(UUID.randomUUID().toString());
         int id_pedido=NUMERO_PEDIDO+1;
         NUMERO_PEDIDO=id_pedido;
         String cliente_pedido=NOMBRE;
@@ -148,12 +150,11 @@ public class PuntoSeleccionadoFragment extends Fragment {
         int cantidadComprar_disfraz=cantidadComprar;
         float precioTotal_disfraz=precioTotal;
 
-        Pedido pedido=new Pedido(id_pedido,cliente_pedido,telefono_pedido,direccion_pedido,referencia_pedido,
+        Pedido pedido=new Pedido(pid,id_pedido,cliente_pedido,telefono_pedido,direccion_pedido,referencia_pedido,
                 puntoEntrega_pedido,latitud_pedido,longitud_pedido,estado_pedido,photo_pedido,
                 fecha_pedido,imagen_disfraz,nombre_disfraz,descripcion_disfraz,talla_disfraz,
                 stock_disfraz,precio_disfraz,cantidadComprar_disfraz,precioTotal_disfraz);
-        String id=mDatabase.push().getKey();
-        mDatabase.child("Pedidos").child(id).setValue(pedido);
+        mDatabase.child("Pedidos").child(pid).setValue(pedido);
 
         Toast.makeText(getContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
     }

@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,27 +17,56 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import org.jetbrains.annotations.NotNull;
 
 public class PedidosAdapter extends FirebaseRecyclerAdapter<Pedido,PedidosAdapter.PedidosHolder> {
+    private PedidosAdapter.EventListener eventListenerDetallePedido;
+
+    public interface EventListener {
+        void onEventPedidoDetalle(String pid,int id_pedido,String cliente_pedido,String telefono_pedido,String direccion_pedido,String referencia_pedido,
+                                   String puntoEntrega_pedido,double latitud_pedido,double longitud_pedido,String estado_pedido,
+                                   String fecha_pedido,String imagen_disfraz,String nombre_disfraz,String descripcion_disfraz,
+                                   String talla_disfraz,int cantidaComprar_disfraz,float precioTotal_disfraz);
+    }
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public PedidosAdapter(@NonNull @NotNull FirebaseRecyclerOptions<Pedido> options) {
+    public PedidosAdapter(@NonNull @NotNull FirebaseRecyclerOptions<Pedido> options, PedidosAdapter.EventListener eventListener) {
         super(options);
+        this.eventListenerDetallePedido = (PedidosAdapter.EventListener) eventListener;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull @NotNull PedidosHolder pedidosHolder, int position, @NonNull @NotNull Pedido pedido) {
-        int numeroOrden=pedido.getId_pedido();
-        String clienteOrden= pedido.getCliente_pedido();
-        String destinoOrden= pedido.getPuntoEntrega_pedido();
-        String fechaOrden= pedido.getFecha_pedido();
+        String pid= pedido.getPid();
+        int id_pedido= pedido.getId_pedido();
+        String cliente_pedido= pedido.getCliente_pedido();
+        String telefono_pedido=pedido.getTelefono_pedido();
+        String direccion_pedido=pedido.getDireccion_pedido();
+        String referencia_pedido=pedido.getReferencia_pedido();
+        String puntoEntrega_pedido=pedido.getPuntoEntrega_pedido();
+        double latitud_pedido=pedido.getLatitud_pedido();
+        double longitud_pedido=pedido.getLongitud_pedido();
+        String estado_pedido=pedido.getEstado_pedido();
+        String fecha_pedido=pedido.getFecha_pedido();
+        String imagen_disfraz=pedido.getImagen_disfraz();
+        String nombre_disfraz=pedido.getNombre_disfraz();
+        String descripcion_disfraz=pedido.getDescripcion_disfraz();
+        String talla_disfraz=pedido.getTalla_disfraz();
+        int cantidaComprar_disfraz=pedido.getCantidadComprar_disfraz();
+        float precioTotal_disfraz=pedido.getPrecioTotal_disfraz();
+        pedidosHolder.txt_numero_pedido.setText("Orden #"+id_pedido);
+        pedidosHolder.txt_nombre_cliente_pedido.setText(cliente_pedido);
+        pedidosHolder.txt_destino_pedido.setText(puntoEntrega_pedido);
+        pedidosHolder.txt_fecha_pedido.setText(fecha_pedido);
 
-        pedidosHolder.txt_numero_pedido.setText("Orden #"+numeroOrden);
-        pedidosHolder.txt_nombre_cliente_pedido.setText(clienteOrden);
-        pedidosHolder.txt_destino_pedido.setText(destinoOrden);
-        pedidosHolder.txt_fecha_pedido.setText(fechaOrden);
+        pedidosHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), ""+pid, Toast.LENGTH_SHORT).show();
+                eventListenerDetallePedido.onEventPedidoDetalle(pid,id_pedido,cliente_pedido,telefono_pedido,direccion_pedido,referencia_pedido,puntoEntrega_pedido, latitud_pedido,longitud_pedido,estado_pedido,fecha_pedido,imagen_disfraz,nombre_disfraz,descripcion_disfraz,talla_disfraz,cantidaComprar_disfraz, precioTotal_disfraz);
+            }
+        });
     }
 
     @NonNull

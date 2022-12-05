@@ -1,6 +1,7 @@
 package com.example.disfrazitos.Entidades;
 
 public class Pedido {
+    String pid;
     int id_pedido;
     String cliente_pedido;
     String telefono_pedido;
@@ -25,7 +26,8 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(int id_pedido, String cliente_pedido, String telefono_pedido, String direccion_pedido, String referencia_pedido, String puntoEntrega_pedido, double latitud_pedido, double longitud_pedido, String estado_pedido, String photo_pedido, String fecha_pedido, String imagen_disfraz, String nombre_disfraz, String descripcion_disfraz, String talla_disfraz, int stock_disfraz, float precio_disfraz, int cantidadComprar_disfraz, float precioTotal_disfraz) {
+    public Pedido(String pid, int id_pedido, String cliente_pedido, String telefono_pedido, String direccion_pedido, String referencia_pedido, String puntoEntrega_pedido, double latitud_pedido, double longitud_pedido, String estado_pedido, String photo_pedido, String fecha_pedido, String imagen_disfraz, String nombre_disfraz, String descripcion_disfraz, String talla_disfraz, int stock_disfraz, float precio_disfraz, int cantidadComprar_disfraz, float precioTotal_disfraz) {
+        this.pid = pid;
         this.id_pedido = id_pedido;
         this.cliente_pedido = cliente_pedido;
         this.telefono_pedido = telefono_pedido;
@@ -45,6 +47,14 @@ public class Pedido {
         this.precio_disfraz = precio_disfraz;
         this.cantidadComprar_disfraz = cantidadComprar_disfraz;
         this.precioTotal_disfraz = precioTotal_disfraz;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public int getId_pedido() {

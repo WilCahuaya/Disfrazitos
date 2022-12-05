@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentosRepartidor.MapsRepatidorFragment">
-
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/borde"/>
+    tools:context=".FragmentosRepartidor.MapsEnCaminoFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +13,7 @@
         android:orientation="vertical"
         android:background="@drawable/borde">
         <TextView
+            android:id="@+id/txt_id_pedido_maps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Orden #128"
@@ -38,6 +35,7 @@
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/black"/>
             <TextView
+                android:id="@+id/txt_precioTotal_pedido_maps"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -58,6 +56,7 @@
             android:layout_marginStart="20dp"
             android:textColor="@color/black"/>
         <TextView
+            android:id="@+id/txt_cliente_pedido_maps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Jhon Cena"
@@ -67,11 +66,27 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CEntregar en:"
+            android:text="Entregar en:"
             android:layout_marginStart="20dp"
             android:textSize="18sp"
             android:textColor="@color/black"/>
         <TextView
+            android:id="@+id/txt_direccion_pedido_maps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Av. Los Alisales"
+            android:textSize="18sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Referencia"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/txt_referencia_pedido_maps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Av. Los Alisales"
@@ -89,6 +104,4 @@
             android:text="ENTREGAR DISFRAZ"
             android:textColor="@color/white"/>
     </LinearLayout>
-
-
-</FrameLayout>
+</fragment>

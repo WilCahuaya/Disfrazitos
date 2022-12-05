@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/borde"
-            android:text="DIRECCIÓN"
+            android:text="BARRIO"
             android:textColor="@color/green"
             android:paddingVertical="10dp"
             android:paddingStart="10dp" />
